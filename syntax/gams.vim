@@ -276,6 +276,9 @@ syn region  gamsString            start=+'+  skip=+\\\\\|\\"+  end=+'+
 
 
 " ?? =e=, =g=, =l=
+syn match gamsEqualityInequality "=e=" contained
+syn match gamsEqualityInequality "=l=" contained
+syn match gamsEqualityInequality "=g=" contained
 
 " to include .csv files
 syn region gamsInclude start="^\$ondelim" end="^\$offdelim"
@@ -350,8 +353,9 @@ if version >= 508 || !exists("did_gams_syntax_inits")
   HiLink gamsFunction           Identifier
   HiLink gamsTypeSpecifier      Type
   HiLink gamsFilenumber         gamsTypeSpecifier
-  HiLink gamsInclude            Special 
-  HiLink gamsSuffix             Statement 
+  HiLink gamsInclude            Special
+  HiLink gamsSuffix             Operator
+  HiLink gamsEqualityInequality Operator
   hi gamsMathsOperator term=bold cterm=bold gui=bold
 
   delcommand HiLink
