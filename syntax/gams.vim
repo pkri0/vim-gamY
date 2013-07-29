@@ -302,7 +302,7 @@ syntax region  gamsComment         start="^\$ontext" end="^\$offtext"
 
 
 " equation declaration and definition regions
-	syn region gamsEqn matchgroup=Delimiter start=/\.\.\s/ matchgroup=Delimiter end=/;/ fold transparent contains=gamsComment,gamsNumber,gamsConditional,gamsRepeat,gamsFunction,gamsMathsOperator,gamsSuffix
+	syn region gamsEqn matchgroup=Delimiter start=/\.\.\(\s\|\n\)/ matchgroup=Delimiter end=/;/ fold transparent contains=gamsComment,gamsNumber,gamsConditional,gamsRepeat,gamsFunction,gamsMathsOperator,gamsSuffix,gamsEqualityInequality
 	syn region gamsEqDecl matchgroup=Delimiter start=/^[ \t\.]*equation[ s\n]/ matchgroup=Delimiter end=/;/ fold transparent contains=gamsComment,gamsString
 	syn match gamsEqDeclComment /^[ \t]*[^ \t]*\zs[^;$\/]*/ contained
 
