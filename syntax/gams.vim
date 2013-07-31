@@ -12,6 +12,10 @@ endif
 " gams is not case sensitive
 syn case ignore
 
+" help smartindent
+set smartindent
+set cinwords+=set,sets,parameter,parameters,equation,equations,variable,variables,table
+
 " KEYWORDS
 
 " for model definition and solve
