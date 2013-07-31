@@ -302,30 +302,30 @@ syntax region  gamsComment         start="^\$ontext" end="^\$offtext"
 
 
 " equation declaration and definition regions
-	syn region gamsEqn matchgroup=Delimiter start=/\.\.\(\s\|\n\)/ matchgroup=Delimiter end=/;/ fold transparent contains=gamsComment,gamsNumber,gamsConditional,gamsRepeat,gamsFunction,gamsMathsOperator,gamsSuffix,gamsEqualityInequality
-	syn region gamsEqDecl matchgroup=Delimiter start=/^[ \t\.]*equation[ s\n]/ matchgroup=Delimiter end=/;/ fold transparent contains=gamsComment,gamsString
-	syn match gamsEqDeclComment /^[ \t]*[^ \t]*\zs[^;$\/]*/ contained
+syn region gamsEqn matchgroup=Delimiter start=/\.\.\(\s\|\n\)/ matchgroup=Delimiter end=/;/ fold transparent contains=gamsComment,gamsNumber,gamsConditional,gamsRepeat,gamsFunction,gamsMathsOperator,gamsSuffix,gamsEqualityInequality
+syn region gamsEqDecl matchgroup=Delimiter start=/^[ \t\.]*equation[ s\n]/ matchgroup=Delimiter end=/;/ fold transparent contains=gamsComment,gamsString
+syn match gamsEqDeclComment /^[ \t]*[^ \t]*\zs[^;$\/]*/ contained
 
 " variable declaration region
-	syn region gamsVar matchgroup=Delimiter start=/^[ \t\.]*variable[ s\n]/ matchgroup=Delimiter end=/;/ fold transparent contains=gamsVarComment,gamsComment,gamsString
-	syn match gamsVarComment /^[ \t]*[^ \t]*\zs[^;$\/]*/ contained
+syn region gamsVar matchgroup=Delimiter start=/^[ \t\.]*variable[ s\n]/ matchgroup=Delimiter end=/;/ fold transparent contains=gamsVarComment,gamsComment,gamsString
+syn match gamsVarComment /^[ \t]*[^ \t]*\zs[^;$\/]*/ contained
 
 " set region
-	syn region gamsSet matchgroup=Delimiter start=/^[ \t\.]*set[ s\n]/ matchgroup=Delimiter end=/;/ fold transparent contains=gamsSetComment,gamsComment,gamsSetValues,gamsString
-	syn match gamsSetComment /^[ \t]*[^ \t]*\zs[^;$\/]*/ contained
-	syn region gamsSetValues matchgroup=Delimiter start=/\// matchgroup=Delimiter end=/\// transparent contains=gamsComment,gamsString contained
+syn region gamsSet matchgroup=Delimiter start=/^[ \t\.]*set[ s\n]/ matchgroup=Delimiter end=/;/ fold transparent contains=gamsSetComment,gamsComment,gamsSetValues,gamsString
+syn match gamsSetComment /^[ \t]*[^ \t]*\zs[^;$\/]*/ contained
+syn region gamsSetValues matchgroup=Delimiter start=/\// matchgroup=Delimiter end=/\// transparent contains=gamsComment,gamsString contained
 
 " parameter region
-	syn region gamsParam matchgroup=Delimiter start=/^[ \t\.]*parameter[ s\n]/ matchgroup=Delimiter end=/;/ fold transparent contains=gamsParamValues,gamsComment,gamsString
-"	syn match gamsParamComment /^[ \t]*[^ \t]*\zs[^;$\/]*/ contained
-	syn region gamsParamValues matchgroup=Delimiter start=/\// matchgroup=Delimiter end=/\// transparent contains=gamsNumber contained
+syn region gamsParam matchgroup=Delimiter start=/^[ \t\.]*parameter[ s\n]/ matchgroup=Delimiter end=/;/ fold transparent contains=gamsParamValues,gamsComment,gamsString
+"syn match gamsParamComment /^[ \t]*[^ \t]*\zs[^;$\/]*/ contained
+syn region gamsParamValues matchgroup=Delimiter start=/\// matchgroup=Delimiter end=/\// transparent contains=gamsNumber contained
 
 " table region
-	syn region gamsTable matchgroup=Delimiter start=/^[ \t\.]*table[ s\n]/ matchgroup=Delimiter end=/;/ fold transparent contains=gamsNumber,gamsComment,gamsString
+syn region gamsTable matchgroup=Delimiter start=/^[ \t\.]*table[ s\n]/ matchgroup=Delimiter end=/;/ fold transparent contains=gamsNumber,gamsComment,gamsString
 
 " model definition region
-	syn region gamsModel matchgroup=Delimiter start=/^[ \t\.]*model[ \n]/ matchgroup=Delimiter end=/;/ fold transparent contains=gamsModelValues,gamsComment,gamsString
-	syn region gamsModelValues matchgroup=Delimiter start=/\// matchgroup=Delimiter end=/\// transparent contained
+syn region gamsModel matchgroup=Delimiter start=/^[ \t\.]*model[ \n]/ matchgroup=Delimiter end=/;/ fold transparent contains=gamsModelValues,gamsComment,gamsString
+syn region gamsModelValues matchgroup=Delimiter start=/\// matchgroup=Delimiter end=/\// transparent contained
 
 " Define the default highlighting.
 " For version 5.7 and earlier: only when not done already
