@@ -296,7 +296,9 @@ syn match  gamsInclude           "%\d\+"
 
 " TODO and FIXME are special keywords in comments
 syntax keyword gamsTodo contained       TODO FIXME
-syntax match gamsComment       "^\*.*" contains=gamsTodo
+" syntax match gamsComment       "^\*.*)" contains=gamsTodo
+" this assumes that $eolcom # is used
+syntax match gamsComment       "\(^\*.*\|#.*\)" contains=gamsTodo
 " GAMS comment regions
 syntax region  gamsComment         start="^\$ontext" end="^\$offtext"
 
