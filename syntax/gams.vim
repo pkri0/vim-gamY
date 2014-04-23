@@ -210,66 +210,19 @@ syn keyword gamsNumber eps na undf
 syn match   gamsNumber "[-+]inf"
 
 " GAMS suffixes
-syn match gamsSuffix /\.pc/
-syn match gamsSuffix /\.ps/
-syn match gamsSuffix /\.pw/
-syn match gamsSuffix /\.tm/
-syn match gamsSuffix /\.bm/
-syn match gamsSuffix /\.case/
-syn match gamsSuffix /\.data/
-syn match gamsSuffix /\.ifile/
-syn match gamsSuffix /\.ofile/
-syn match gamsSuffix /\.page/
-syn match gamsSuffix /\.rdate/
-syn match gamsSuffix /\.rfile/
-syn match gamsSuffix /\.rtime/
-syn match gamsSuffix /\.sfile/
-syn match gamsSuffix /\.time/
-syn match gamsSuffix /\.title/
-syn match gamsSuffix /\.ts/
-syn match gamsSuffix /\.tl/
-syn match gamsSuffix /\.te/
-syn match gamsSuffix /\.tf/
-syn match gamsSuffix /\.l/
-syn match gamsSuffix /\.lo/
-syn match gamsSuffix /\.m/
-syn match gamsSuffix /\.fx/
-syn match gamsSuffix /\.prior/
-syn match gamsSuffix /\.scale/
-syn match gamsSuffix /\.up/
-syn match gamsSuffix /\.lj/
-syn match gamsSuffix /\.nj/
-syn match gamsSuffix /\.sj/
-syn match gamsSuffix /\.tj/
-syn match gamsSuffix /\.lw/
-syn match gamsSuffix /\.nw/
-syn match gamsSuffix /\.sw/
-syn match gamsSuffix /\.tw/
-syn match gamsSuffix /\.nd/
-syn match gamsSuffix /\.nr/
-syn match gamsSuffix /\.nz/
-syn match gamsSuffix /\.cc/
-syn match gamsSuffix /\.hdcc/
-syn match gamsSuffix /\.tlcc/
-syn match gamsSuffix /\.cr/
-syn match gamsSuffix /\.hdcr/
-syn match gamsSuffix /\.tlcr/
-syn match gamsSuffix /\.ll/
-syn match gamsSuffix /\.hdll/
-syn match gamsSuffix /\.tlll/
-syn match gamsSuffix /\.lp/
-syn match gamsSuffix /\.ws/
-syn match gamsSuffix /\.errors/
+syn keyword gamsSuffix bm case cc cr data errors fx hdcc hdcr hdll ifile infeas
+syn keyword gamsSuffix l lj ll lo lp lw m nd nj nr nw nz ofile page pc prior ps pw
+syn keyword gamsSuffix range rdate rfile rtime scale sfile sj slack slackup slacklo sw
+syn keyword gamsSuffix te tf time title tj tl tlcc tlcr tlll tm ts tw
+syn keyword gamsSuffix up val ws
 
 " String and Character contstants
 syn region  gamsString start=+"+  skip=+\\\\\|\\"+  end=+"+
 " with single quotes as well
 syn region  gamsString start=+'+  skip=+\\\\\|\\"+  end=+'+
 
-" ?? =e=, =g=, =l=
-syn match gamsEqualityInequality "=e=" contained
-syn match gamsEqualityInequality "=l=" contained
-syn match gamsEqualityInequality "=g=" contained
+" equation types (e.g. =E= or =G=)
+syn match gamsEquationType "=[cegln]=" contained
 
 " to include .csv files
 syn region gamsInclude start="^\$ondelim" end="^\$offdelim"
@@ -288,7 +241,7 @@ syn match   gamsComment "\(^\*.*\|#.*\)" contains=gamsTodo,@Spell
 syn region  gamsComment start="^\$ontext" end="^\$offtext" keepend contains=gamsTodo,@Spell
 
 " equation declaration and definition regions
-syn region gamsEqn matchgroup=Delimiter start=/\.\.\(\s\|\n\)/ matchgroup=Delimiter end=/;/ fold transparent contains=gamsComment,gamsNumber,gamsConditional,gamsRepeat,gamsFunction,gamsMathsOperator,gamsSuffix,gamsEqualityInequality, gamsString
+syn region gamsEqn matchgroup=Delimiter start=/\.\.\(\s\|\n\)/ matchgroup=Delimiter end=/;/ fold transparent contains=gamsComment,gamsNumber,gamsConditional,gamsRepeat,gamsFunction,gamsMathsOperator,gamsSuffix,gamsEquationType, gamsString
 syn region gamsEqDecl matchgroup=Delimiter start=/^[ \t\.]*equation[ s\n]/ matchgroup=Delimiter end=/;/ fold transparent contains=gamsComment,gamsString
 syn match gamsEqDeclComment /^[ \t]*[^ \t]*\zs[^;$\/]*/ contained
 
@@ -329,7 +282,7 @@ hi def link gamsTypeSpecifier      Type
 hi def link gamsFilenumber         gamsTypeSpecifier
 hi def link gamsInclude            Special
 hi def link gamsSuffix             Operator
-hi def link gamsEqualityInequality Operator
+hi def link gamsEquationType       Operator
 
 hi gamsMathsOperator term=bold cterm=bold gui=bold
 
