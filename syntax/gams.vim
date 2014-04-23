@@ -298,9 +298,9 @@ syn match  gamsInclude           "%\d\+"
 syntax keyword gamsTodo contained       TODO FIXME
 " syntax match gamsComment       "^\*.*)" contains=gamsTodo
 " this assumes that $eolcom # is used
-syntax match gamsComment       "\(^\*.*\|#.*\)" contains=gamsTodo
+syntax match gamsComment       "\(^\*.*\|#.*\)" contains=gamsTodo,@Spell
 " GAMS comment regions
-syntax region  gamsComment         start="^\$ontext" end="^\$offtext"
+syntax region  gamsComment         start="^\$ontext" end="^\$offtext" keepend contains=gamsTodo,@Spell
 
 
 " equation declaration and definition regions
