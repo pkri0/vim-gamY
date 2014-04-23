@@ -14,11 +14,11 @@ syn case ignore
 
 " for model definition and solve
 " gams statements defined as regions below: set, parameter, model, equation, variable, Table
-syn keyword gamsStatement       Solve using
+syn keyword gamsStatement       solve using
 syn keyword gamsStatement       display
 syn keyword gamsStatement       option
-syn keyword gamsStatement       Alias
-syn keyword gamsStatement       Scalar
+syn keyword gamsStatement       alias
+syn keyword gamsStatement       scalar
 syn keyword gamsStatement       sameas abort
 syn keyword gamsStatement       free semicont semiint sos1 sos2 binary integer
 syn keyword gamsStatement       positive negative
@@ -36,26 +36,25 @@ syn keyword gamsConditional     if else Elseif ifi exist IFE
 syn keyword gamsConditional     ne ge le eq gt lt
 syn keyword gamsRepeat          loop while repeat until
 syn keyword gamsRepeat          for to Downto By
+
 " logical and math operators
 syn match gamsMathsOperator "-\|=\|[:+^/\\]"
 syn match gamsMathsOperator "\A\(AND\|OR\|XOR\|NOT\)\A"hs=s+1,he=e-1
 
 " math and statistical functions
-syntax keyword gamsFunction      ABS ASC sigmoid sum
-syntax keyword gamsFunction      acos acosh asin asinh atan atan2
-syntax keyword gamsFunction      atanh ceil ctime cos cosh exp floor log log10
-syntax keyword gamsFunction      max min precision round sin sinh sqrt tan tanh sqrt
-syntax keyword gamsFunction      smax smin
-syntax keyword gamsFunction      time trunc div
-syntax keyword gamsFunction      beta betareg binomial edist entropy errorf fact
-syntax keyword gamsFunction      gamma gammareg logbeta loggamma normal
-syntax keyword gamsFunction      mapval mod ncpcm ncpf pi poly power
-syntax keyword gamsFunction      sign trunc uniform uniformint
+syn keyword gamsFunction      abs asc sigmoid sum
+syn keyword gamsFunction      acos acosh asin asinh atan atan2
+syn keyword gamsFunction      atanh ceil ctime cos cosh exp floor log log10
+syn keyword gamsFunction      max min precision round sin sinh sqrt tan tanh sqrt
+syn keyword gamsFunction      smax smin
+syn keyword gamsFunction      time trunc div
+syn keyword gamsFunction      beta betareg binomial edist entropy errorf fact
+syn keyword gamsFunction      gamma gammareg logbeta loggamma normal
+syn keyword gamsFunction      mapval mod ncpcm ncpf pi poly power
+syn keyword gamsFunction      sign trunc uniform uniformint
 
 " execution time gdx commands
 syn keyword gamsSpecial execute_load execute_unload
-
-
 
 " usually dollar commands are put to the first position within the line
 " but if there is an $if[ie] command before...
@@ -191,14 +190,14 @@ syn match gamsSpecial "\$("he=e-1
 "syn match gamsSpecial           "^\$\<[^ ]\+\>"
 
 
-"integer number, or floating point number without a dot.
-"use the special boundary symbols \< and \>
+" integer number, or floating point number without a dot.
+" use the special boundary symbols \< and \>
 syn match  gamsNumber           "\<\d\+\>"
 syn match  gamsNumber           "\<[-+]\d\+\>"
-"floating point number, with dot
+" floating point number, with dot
 syn match  gamsNumber           "\<\d\+\.\d*\>"
 syn match  gamsNumber           "\<[-+]\d\+\.\d*\>"
-"floating point number, starting with a dot
+" floating point number, starting with a dot
 syn match  gamsNumber           "\<\.\d\+\>"
 syn match  gamsNumber           "\<[-+]\.\d\+\>"
 " scientific notation (with exponent)?
@@ -208,12 +207,9 @@ syn match gamsNumber '\<\d[[:digit:]]*\.\d*[eE][\-+]\=\d\+\>'
 
 " special numbers
 syn keyword gamsNumber eps na undf
-syn match gamsNumber "[-+]inf"
+syn match   gamsNumber "[-+]inf"
 
-
-
-
-" suffixes -- all from Henry
+" GAMS suffixes
 syn match gamsSuffix /\.pc/
 syn match gamsSuffix /\.ps/
 syn match gamsSuffix /\.pw/
@@ -265,13 +261,10 @@ syn match gamsSuffix /\.lp/
 syn match gamsSuffix /\.ws/
 syn match gamsSuffix /\.errors/
 
-
-
 " String and Character contstants
-syn region  gamsString            start=+"+  skip=+\\\\\|\\"+  end=+"+
+syn region  gamsString start=+"+  skip=+\\\\\|\\"+  end=+"+
 " with single quotes as well
-syn region  gamsString            start=+'+  skip=+\\\\\|\\"+  end=+'+
-
+syn region  gamsString start=+'+  skip=+\\\\\|\\"+  end=+'+
 
 " ?? =e=, =g=, =l=
 syn match gamsEqualityInequality "=e=" contained
@@ -281,25 +274,18 @@ syn match gamsEqualityInequality "=g=" contained
 " to include .csv files
 syn region gamsInclude start="^\$ondelim" end="^\$offdelim"
 
-
 " GAMS global variables e.g. %myglobal%
 syn region gamsInclude start="%" end="%\|\$"
 
 " when a command line parameter is passed to the gams code the %1 notation can be used
 syn match  gamsInclude           "%\d\+"
 
-" GAMS comments (see REGIONS section as well)
-" switch on for end of line comments
-" syn match   gamsComment         "#.*$"
-
 " TODO and FIXME are special keywords in comments
-syntax keyword gamsTodo contained       TODO FIXME
-" syntax match gamsComment       "^\*.*)" contains=gamsTodo
-" this assumes that $eolcom # is used
-syntax match gamsComment       "\(^\*.*\|#.*\)" contains=gamsTodo,@Spell
-" GAMS comment regions
-syntax region  gamsComment         start="^\$ontext" end="^\$offtext" keepend contains=gamsTodo,@Spell
+syn keyword gamsTodo contained       TODO FIXME
 
+" GAMS comments
+syn match   gamsComment "\(^\*.*\|#.*\)" contains=gamsTodo,@Spell
+syn region  gamsComment start="^\$ontext" end="^\$offtext" keepend contains=gamsTodo,@Spell
 
 " equation declaration and definition regions
 syn region gamsEqn matchgroup=Delimiter start=/\.\.\(\s\|\n\)/ matchgroup=Delimiter end=/;/ fold transparent contains=gamsComment,gamsNumber,gamsConditional,gamsRepeat,gamsFunction,gamsMathsOperator,gamsSuffix,gamsEqualityInequality, gamsString
@@ -327,7 +313,6 @@ syn region gamsTable matchgroup=Delimiter start=/^[ \t\.]*table[ s\n]/ matchgrou
 syn region gamsModel matchgroup=Delimiter start=/^[ \t\.]*model[ \n]/ matchgroup=Delimiter end=/;/ fold transparent contains=gamsModelValues,gamsComment,gamsString
 syn region gamsModelValues matchgroup=Delimiter start=/\// matchgroup=Delimiter end=/\// transparent contained
 
-" Define the default highlighting.
 hi def link gamsLabel              Label
 hi def link gamsConditional        Conditional
 hi def link gamsRepeat             Repeat
