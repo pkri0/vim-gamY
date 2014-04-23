@@ -1,11 +1,9 @@
 " Vim syntax file
 " Language:        gams
 " Filenames:       *.gms
-" For version 5.x: Clear all syntax items
-" For version 6.x: Quit when a syntax file was already loaded
-if version < 600
-  syntax clear
-elseif exists("b:current_syntax")
+" Quit when a syntax file was already loaded
+
+if exists("b:current_syntax")
   finish
 endif
 
@@ -330,39 +328,26 @@ syn region gamsModel matchgroup=Delimiter start=/^[ \t\.]*model[ \n]/ matchgroup
 syn region gamsModelValues matchgroup=Delimiter start=/\// matchgroup=Delimiter end=/\// transparent contained
 
 " Define the default highlighting.
-" For version 5.7 and earlier: only when not done already
-" For version 5.8 and later: only when an item doesn't have
-" highlighting yet
-if version >= 508 || !exists("did_gams_syntax_inits")
-  if version < 508
-    let did_gams_syntax_inits = 1
-    command -nargs=+ HiLink hi link <args>
-  else
-    command -nargs=+ HiLink hi def link <args>
-  endif
+hi def link gamsLabel              Label
+hi def link gamsConditional        Conditional
+hi def link gamsRepeat             Repeat
+hi def link gamsLineNumber         Comment
+hi def link gamsNumber             Number
+hi def link gamsError              Error
+hi def link gamsStatement          Statement
+hi def link gamsString             String
+hi def link gamsComment            Comment
+hi def link gamsSpecial            Special
+hi def link gamsTodo               Todo
+hi def link gamsFunction           Identifier
+hi def link gamsTypeSpecifier      Type
+hi def link gamsFilenumber         gamsTypeSpecifier
+hi def link gamsInclude            Special
+hi def link gamsSuffix             Operator
+hi def link gamsEqualityInequality Operator
 
-  HiLink gamsLabel              Label
-  HiLink gamsConditional        Conditional
-  HiLink gamsRepeat             Repeat
-  HiLink gamsLineNumber         Comment
-  HiLink gamsNumber             Number
-  HiLink gamsError              Error
-  HiLink gamsStatement          Statement
-  HiLink gamsString             String
-  HiLink gamsComment            Comment
-  HiLink gamsSpecial            Special
-  HiLink gamsTodo               Todo
-  HiLink gamsFunction           Identifier
-  HiLink gamsTypeSpecifier      Type
-  HiLink gamsFilenumber         gamsTypeSpecifier
-  HiLink gamsInclude            Special
-  HiLink gamsSuffix             Operator
-  HiLink gamsEqualityInequality Operator
-  hi gamsMathsOperator term=bold cterm=bold gui=bold
-
-  delcommand HiLink
-endif
+hi gamsMathsOperator term=bold cterm=bold gui=bold
 
 let b:current_syntax = "gams"
 
-" vim: ts=8
+" vim: ts=4 expandtab
