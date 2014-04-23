@@ -181,10 +181,7 @@ syn match gamsSpecial "\$abort"
 syn match gamsSpecial "\$terminate"
 syn match gamsSpecial "\$stop"
 
-
 syn match gamsSpecial "\$("he=e-1
-
-
 
 " uncomment to hihglight every word starting with a dollar sign in the beggining of the line
 "syn match gamsSpecial           "^\$\<[^ ]\+\>"
@@ -241,30 +238,30 @@ syn match   gamsComment "\(^\*.*\|#.*\)" contains=gamsTodo,@Spell
 syn region  gamsComment start="^\$ontext" end="^\$offtext" keepend contains=gamsTodo,@Spell
 
 " equation declaration and definition regions
-syn region gamsEqn matchgroup=Delimiter start=/\.\.\(\s\|\n\)/ matchgroup=Delimiter end=/;/ fold transparent contains=gamsComment,gamsNumber,gamsConditional,gamsRepeat,gamsFunction,gamsMathsOperator,gamsSuffix,gamsEquationType, gamsString
-syn region gamsEqDecl matchgroup=Delimiter start=/^[ \t\.]*equation[ s\n]/ matchgroup=Delimiter end=/;/ fold transparent contains=gamsComment,gamsString
+syn region gamsEqn    matchgroup=Delimiter start=/\.\.\(\s\|\n\)/ end=/;/ fold transparent contains=gamsComment,gamsNumber,gamsConditional,gamsRepeat,gamsFunction,gamsMathsOperator,gamsSuffix,gamsEquationType, gamsString
+syn region gamsEqDecl matchgroup=Delimiter start=/^[ \t\.]*equation[ s\n]/ end=/;/ fold transparent contains=gamsComment,gamsString
 syn match gamsEqDeclComment /^[ \t]*[^ \t]*\zs[^;$\/]*/ contained
 
 " variable declaration region
-syn region gamsVar matchgroup=Delimiter start=/^[ \t\.]*variable[ s\n]/ matchgroup=Delimiter end=/;/ fold transparent contains=gamsVarComment,gamsComment,gamsString
+syn region gamsVar matchgroup=Delimiter start=/^[ \t\.]*variable[ s\n]/ end=/;/ fold transparent contains=gamsVarComment,gamsComment,gamsString
 syn match gamsVarComment /^[ \t]*[^ \t]*\zs[^;$\/]*/ contained
 
 " set region
-syn region gamsSet matchgroup=Delimiter start=/^[ \t\.]*set[ s\n]/ matchgroup=Delimiter end=/;/ fold transparent contains=gamsSetComment,gamsComment,gamsSetValues,gamsString
+syn region gamsSet matchgroup=Delimiter start=/^[ \t\.]*set[ s\n]/ end=/;/ fold transparent contains=gamsSetComment,gamsComment,gamsSetValues,gamsString
 syn match gamsSetComment /^[ \t]*[^ \t]*\zs[^;$\/]*/ contained
-syn region gamsSetValues matchgroup=Delimiter start=/\// matchgroup=Delimiter end=/\// transparent contains=gamsComment,gamsString contained
+syn region gamsSetValues matchgroup=Delimiter start=/\// end=/\// transparent contains=gamsComment,gamsString contained
 
 " parameter region
-syn region gamsParam matchgroup=Delimiter start=/^[ \t\.]*parameter[ s\n]/ matchgroup=Delimiter end=/;/ fold transparent contains=gamsParamValues,gamsComment,gamsString
+syn region gamsParam matchgroup=Delimiter start=/^[ \t\.]*parameter[ s\n]/ end=/;/ fold transparent contains=gamsParamValues,gamsComment,gamsString
 "syn match gamsParamComment /^[ \t]*[^ \t]*\zs[^;$\/]*/ contained
-syn region gamsParamValues matchgroup=Delimiter start=/\// matchgroup=Delimiter end=/\// transparent contains=gamsNumber contained
+syn region gamsParamValues matchgroup=Delimiter start=/\// end=/\// transparent contains=gamsNumber contained
 
 " table region
-syn region gamsTable matchgroup=Delimiter start=/^[ \t\.]*table[ s\n]/ matchgroup=Delimiter end=/;/ fold transparent contains=gamsNumber,gamsComment,gamsString
+syn region gamsTable matchgroup=Delimiter start=/^[ \t\.]*table[ s\n]/ end=/;/ fold transparent contains=gamsNumber,gamsComment,gamsString
 
 " model definition region
-syn region gamsModel matchgroup=Delimiter start=/^[ \t\.]*model[ \n]/ matchgroup=Delimiter end=/;/ fold transparent contains=gamsModelValues,gamsComment,gamsString
-syn region gamsModelValues matchgroup=Delimiter start=/\// matchgroup=Delimiter end=/\// transparent contained
+syn region gamsModel matchgroup=Delimiter start=/^[ \t\.]*model[ \n]/ end=/;/ fold transparent contains=gamsModelValues,gamsComment,gamsString
+syn region gamsModelValues matchgroup=Delimiter start=/\// end=/\// transparent contained
 
 hi def link gamsLabel              Label
 hi def link gamsConditional        Conditional
