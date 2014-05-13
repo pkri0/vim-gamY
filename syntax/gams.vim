@@ -244,35 +244,33 @@ syn match  gamsComment "\(^\*.*\|#.*\)" contains=gamsTodo,@Spell
 syn region gamsComment matchgroup=gamsDollarCommandName start="^\$ontext" end="^\$offtext" keepend contains=gamsTodo,@Spell
 
 
-syn match gamsItemName "\<[[:alpha:]][_[:alnum:]]*" contained
+syn region gamsItem matchgroup=gamsItemName start="\<[[:alpha:]][_[:alnum:]]*" skip="/[^/]*/" matchgroup=None end="\s*\(,\|;\|$\)" contained transparent contains=gamsItemComment,gamsItemDimension,gamsItemValues
+syn region gamsItemDimension start="(" end=")" contained transparent keepend
+syn region gamsItemComment start="\s[^/]" end=".\($\|/\|,\)\@=" contained contains=@Spell
+syn region gamsItemValues matchgroup=Delimiter start=+/+ skip=+".*"+ end=+/+ transparent keepend contained contains=gamsComment,gamsString,gamsNumber
 
 syn region gamsScalar matchgroup=gamsDeclaration start=/^\s*scalars\{0,1\}\_s/ end=/;/ transparent keepend fold contains=gamsItemName,gamsNumber
 
 " equation declaration and definition regions
-syn region gamsEqn    matchgroup=Delimiter start=/\.\.\(\s\|\n\)/          end=/;/ fold transparent contains=gamsComment,gamsNumber,gamsConditional,gamsRepeat,gamsSuffix,gamsEquationType,gamsString,gamsFunction
-syn region gamsEqDecl matchgroup=Delimiter start=/^\s*equations\{0,1\}\_s/ end=/;/ fold transparent contains=gamsComment,gamsString
-syn match gamsEqDeclComment /^[ \t]*[^ \t]*\zs[^;$\/]*/ contained
+syn region gamsEqn    matchgroup=Delimiter start=/\.\.\(\s\|\n\)/ end=/;/ fold transparent contains=gamsComment,gamsNumber,gamsConditional,gamsRepeat,gamsSuffix,gamsEquationType,gamsString,gamsFunction
+syn region gamsEqDecl matchgroup=gamsDeclaration start=/^\s*equations\{0,1\}/ end=/;/ fold transparent keepend contains=gamsItem
 
 " variable declaration region
-syn region gamsVar matchgroup=gamsDeclaration start=/^\s*variables\{0,1\}\_s/ end=/;/ fold transparent contains=gamsVarComment,gamsComment,gamsString
-syn match gamsVarComment /^[ \t]*[^ \t]*\zs[^;$\/]*/ contained
+syn region gamsVar matchgroup=gamsDeclaration start=/^\s*variables\{0,1\}/ end=/;/ fold transparent keepend contains=gamsItem
 
 " set region
-syn region gamsSet matchgroup=gamsDeclaration start=/^\s*sets\{0,1\}\_s/ end=/;/ fold transparent contains=gamsSetComment,gamsComment,gamsSetValues,gamsString,gamsItemName
-syn match  gamsSetComment /^[ \t]*[^ \t]*\zs[^;$\/]*/ contained
-syn region gamsSetValues matchgroup=Delimiter start=+/+ end=+/+ transparent contains=gamsComment,gamsString,gamsNumber contained
+syn region gamsSet matchgroup=gamsDeclaration start=/^\s*sets\{0,1\}/ end=/;/ fold transparent keepend contains=gamsItem
 
 " parameter region
-syn region gamsParam matchgroup=gamsDeclaration start=/^\s*parameters\{0,1}\_s/ end=/;/ fold transparent contains=gamsItemName,gamsParamValues,gamsComment,gamsString
-"syn match gamsParamComment /^[ \t]*[^ \t]*\zs[^;$\/]*/ contained
-syn region gamsParamValues matchgroup=Delimiter start=+/+ end=+/+ transparent contains=gamsNumber,gamsString contained
+syn region gamsParam matchgroup=gamsDeclaration start=/^\s*parameters\{0,1\}/ end=/;/ fold transparent keepend contains=gamsItem
 
 " table region
-syn region gamsTable matchgroup=gamsDeclaration start=/^\s*tables\{0,1}\_s/ end=/;/ fold transparent contains=gamsNumber,gamsComment,gamsString
+syn region gamsTable matchgroup=gamsDeclaration start=/^\s*tables\{0,1\}/ end=/;/ fold transparent contains=gamsNumber,gamsComment,gamsString
 
 " model definition region
-syn region gamsModel matchgroup=gamsDeclaration start=/^\s*models\{0,1}\_s/ end=/;/ fold transparent contains=gamsModelValues,gamsComment,gamsString,gamsItemName
-syn region gamsModelValues matchgroup=Delimiter start=+/+ end=+/+ transparent contained contains=gamsNumber,gamsString
+syn region gamsModel matchgroup=gamsDeclaration start=/^\s*models\{0,1\}/ end=/;/ fold transparent keepend contains=gamsItem
+
+hi def link gamsItemComment        gamsComment
 
 hi def link gamsLabel              Label
 hi def link gamsConditional        Conditional
