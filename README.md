@@ -1,4 +1,4 @@
-# description
+# gams.vim
 
 Syntax highlighting for the GAMS programming language
 
