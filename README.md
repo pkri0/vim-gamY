@@ -1,12 +1,21 @@
-# gams.vim
+# vim-gamY
 
-Syntax highlighting for the GAMS programming language
+Syntax highlighting for the GAMY programming language
 
 ## Installation
 
-If you don't have a preferred installation method, I recommend installing pathogen.vim, and then simply copy and paste:
+Using lazy-vim, simply copy and paste:
 
 ```
-cd ~/.vim/bundle
-git clone git://github.com/zorab47/vim-gams.git
+return {
+    "pkri0/vim-gamY", branch = "main",
+    config = function()
+        vim.filetype.add({
+            extension = {
+                gms = "gams",
+                gmy = "gams",
+            },
+        })
+    end
+}
 ```
