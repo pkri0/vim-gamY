@@ -6,4 +6,4 @@ set cinwords+=set,sets,parameter,parameters,equation,equations,variable,variable
 
 " make * the comment character. For gams the comment needs to be at the start
 " of the line
-set commentstring=*\ %s
+set commentstring=#\ %s
